@@ -1,0 +1,35 @@
+{
+    "data": [
+        {
+            "code": "ADMINIST",
+            "parents": []
+        },
+        {
+            "code": "BACKEND",
+            "parents": [
+                {
+                    "code": "SUPPORT",
+                    "parents": []
+                }
+            ]
+        },
+        {
+            "code": "FRONT",
+            "parents": [
+                {
+                    "code": "SUPPORT",
+                    "parents": []
+                }
+            ]
+        },
+        {
+            "code": "ODY",
+            "parents": [
+                {
+                    "code": "DEV",
+                    "parents": []
+                }
+            ]
+        }
+    ]
+}
