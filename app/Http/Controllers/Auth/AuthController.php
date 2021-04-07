@@ -5,14 +5,15 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUserRequest;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class PassportAuthController extends Controller
+class AuthController extends Controller
 {
     /**
      * Registration
      */
-    public function register(CreateUserRequest $request)
+    public function register(CreateUserRequest $request): JsonResponse
     {
         $user = User::create([
             'name' => $request->name,
@@ -28,7 +29,7 @@ class PassportAuthController extends Controller
     /**
      * Login
      */
-    public function login(Request $request)
+    public function login(Request $request): JsonResponse
     {
         $data = [
             'email' => $request->email,
@@ -41,5 +42,20 @@ class PassportAuthController extends Controller
         } else {
             return response()->json(['error' => 'Unauthorised'], 401);
         }
+    }
+
+    /**
+     * Get the authenticated User.
+     *
+     * @return JsonResponse
+     */
+    public function me(): JsonResponse
+    {
+        $user = auth()->user();
+
+        return response()->json([
+            'email'         => $user->email,
+            'id'            => $user->id,
+        ]);
     }
 }
