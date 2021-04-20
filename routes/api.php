@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('auth/register', [AuthController::class, 'register']);
 Route::post('auth/login', [AuthController::class, 'login']);
-Route::get('auth/me', [AuthController::class, 'me']);
+Route::middleware('auth:api')->get('auth/me', [AuthController::class, 'me']);
 
 Route::middleware('auth:api')->apiResource('users', UserController::class);
 
